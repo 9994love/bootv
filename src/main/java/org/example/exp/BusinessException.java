@@ -1,5 +1,7 @@
 package org.example.exp;
 
+import org.example.constants.ExceptionEnum;
+
 public class BusinessException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
@@ -10,6 +12,12 @@ public class BusinessException extends RuntimeException {
         super(errorMessage);
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+    }
+
+    public BusinessException(ExceptionEnum exceptionEnum) {
+        super(exceptionEnum.getName());
+        this.errorCode = exceptionEnum.getCode();
+        this.errorMessage = exceptionEnum.getName();
     }
 
     public BusinessException(int errorCode, String errorMessage, Throwable cause) {
