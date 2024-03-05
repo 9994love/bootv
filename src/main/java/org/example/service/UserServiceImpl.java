@@ -5,14 +5,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.constants.ExceptionEnum;
 import org.example.exp.BusinessException;
 import org.example.form.LoginForm;
+import org.example.form.UpdateUserForm;
 import org.example.mapper.UserMapper;
 import org.example.pojo.User;
 import org.example.util.JwtUtil;
 import org.example.util.Md5Util;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.util.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +53,18 @@ public class UserServiceImpl implements UserService{
         claims.put("username", userInDB.getUsername());
         claims.put("password", userInDB.getPassword());
         return JwtUtil.genToken(claims);
+    }
+
+    @Override
+    public User userInfo() {
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        String username = (String) claims.get("username");
+        return userMapper.findUserByName(username);
+    }
+
+    @Override
+    public void update(UpdateUserForm updateUserForm) {
+        updateUserForm.setUpdateTime(LocalDateTime.now());
+        userMapper.updateUser(updateUserForm);
     }
 }

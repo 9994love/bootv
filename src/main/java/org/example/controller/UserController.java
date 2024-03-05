@@ -5,9 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.example.form.LoginForm;
+import org.example.form.UpdateUserForm;
 import org.example.pojo.Result;
+import org.example.pojo.User;
 import org.example.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,22 @@ public class UserController {
     @PostMapping("login")
     public Result<String> login(@RequestBody @Valid LoginForm loginForm) {
         return Result.success(userService.login(loginForm));
+    }
+
+    /**
+     * 获取用户详情
+     */
+    @PostMapping("userInfo")
+    public Result<User> userInfo(){
+        return Result.success(userService.userInfo());
+    }
+
+    /**
+     * 更新用户信息
+     */
+    @PostMapping("update")
+    public Result update(@RequestBody @Valid UpdateUserForm updateUserForm){
+        userService.update(updateUserForm);
+        return Result.success();
     }
 }
