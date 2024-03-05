@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.example.form.LoginForm;
+import org.example.form.UpdateAvatarForm;
+import org.example.form.UpdatePwdFrom;
 import org.example.form.UpdateUserForm;
 import org.example.pojo.Result;
 import org.example.pojo.User;
@@ -57,6 +59,24 @@ public class UserController {
     @PostMapping("update")
     public Result update(@RequestBody @Valid UpdateUserForm updateUserForm){
         userService.update(updateUserForm);
+        return Result.success();
+    }
+
+    /**
+     * 更新用户头像
+     */
+    @PostMapping("updateAvatar")
+    public Result updateAvatar(@RequestBody @Valid UpdateAvatarForm form){
+        userService.updateAvatar(form);
+        return Result.success();
+    }
+
+    /**
+     * 更新用户密码
+     */
+    @PostMapping("updatePwd")
+    public Result updatePwd(@RequestBody @Valid UpdatePwdFrom from){
+        userService.updatePwd(from);
         return Result.success();
     }
 }
