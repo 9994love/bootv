@@ -66,14 +66,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void update(UpdateUserForm updateUserForm) {
-        updateUserForm.setId(getIdFromThreadLocal());
+        updateUserForm.setId(ThreadLocalUtil.getIdFromThreadLocal());
         updateUserForm.setUpdateTime(LocalDateTime.now());
         userMapper.updateUser(updateUserForm);
     }
 
     @Override
     public void updateAvatar(UpdateAvatarForm form) {
-        form.setId(getIdFromThreadLocal());
+        form.setId(ThreadLocalUtil.getIdFromThreadLocal());
         form.setUpdateTime(LocalDateTime.now());
         userMapper.updateUserAvatar(form);
     }
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void updatePwd(UpdatePwdFrom form) {
         //因为数据库的密码是加密后的，所以都需要加密
-        String userName = getUserNameFromThreadLocal();
+        String userName = ThreadLocalUtil.getUserNameFromThreadLocal();
         User user = userMapper.findUserByName(userName);
         String password = user.getPassword();
         Integer id = user.getId();
@@ -97,13 +97,5 @@ public class UserServiceImpl implements UserService{
         userMapper.updateUserPwd(id, newPwd);
     }
 
-    private Integer getIdFromThreadLocal(){
-        Map<String, Object> claim = ThreadLocalUtil.get();
-        return  (Integer) claim.get("id");
-    }
 
-    private String getUserNameFromThreadLocal(){
-        Map<String, Object> claim = ThreadLocalUtil.get();
-        return  (String) claim.get("username");
-    }
 }

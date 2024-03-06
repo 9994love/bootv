@@ -1,6 +1,7 @@
 package org.example.handler;
 
 import jakarta.validation.ConstraintViolationException;
+import org.apache.commons.lang3.StringUtils;
 import org.example.constants.ExceptionEnum;
 import org.example.exp.BusinessException;
 import org.example.pojo.Result;
@@ -23,7 +24,11 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = {Exception.class})
     public Result<Void> handleBusinessException(Exception e){
-        return Result.error(e.getMessage());
+        String message = e.getMessage();
+        if (StringUtils.isBlank(message)) {
+            message = e.getCause().toString();
+        }
+        return Result.error(message);
     }
 
     /**
