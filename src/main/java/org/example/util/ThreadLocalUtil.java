@@ -24,6 +24,17 @@ public class ThreadLocalUtil {
 
     //清除ThreadLocal 防止内存泄漏
     public static void remove(){
+
         THREAD_LOCAL.remove();
+    }
+
+    public static Integer getIdFromThreadLocal(){
+        Map<String, Object> claim = ThreadLocalUtil.get();
+        return  (Integer) claim.get("id");
+    }
+
+    public static String getUserNameFromThreadLocal(){
+        Map<String, Object> claim = ThreadLocalUtil.get();
+        return  (String) claim.get("username");
     }
 }
