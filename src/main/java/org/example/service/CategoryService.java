@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.form.UpdateCategoryForm;
-import org.example.pojo.Category;
+import org.example.pojo.form.UpdateCategoryForm;
+import org.example.pojo.entity.Category;
 
 import java.util.List;
 

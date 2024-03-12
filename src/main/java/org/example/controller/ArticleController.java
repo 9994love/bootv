@@ -1,21 +1,35 @@
 package org.example.controller;
 
-import org.example.pojo.Result;
-import org.example.util.JwtUtil;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.net.http.HttpResponse;
-import java.util.Map;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.example.pojo.PageBean;
+import org.example.pojo.entity.Article;
+import org.example.pojo.form.AddArticleForm;
+import org.example.pojo.entity.Result;
+import org.example.pojo.form.PageArticleForm;
+import org.example.service.ArticleService;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("article")
+@RequiredArgsConstructor
+@Validated
 public class ArticleController {
 
-    @PostMapping("list")
-    public Result<String> list(){
-        return Result.success("sd");
+    private final ArticleService articleService;
+
+    /**
+     * 新增文章
+     */
+    @PostMapping("add")
+    public Result add(@RequestBody @Valid AddArticleForm form){
+        articleService.add(form);
+        return Result.success();
+    }
+
+    @PostMapping("page")
+    public Result<PageBean<Article>> page(@RequestBody @Valid PageArticleForm form){
+        return Result.success(articleService.pageByCategoryIdAndState(form));
     }
 }

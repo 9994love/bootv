@@ -1,12 +1,11 @@
 package org.example.mapper;
 
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.example.form.UpdateAvatarForm;
-import org.example.form.UpdateUserForm;
-import org.example.pojo.User;
+import org.example.pojo.form.UpdateAvatarForm;
+import org.example.pojo.form.UpdateUserForm;
+import org.example.pojo.entity.User;
 
 public interface UserMapper {
 

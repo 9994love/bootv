@@ -1,11 +1,11 @@
 package org.example.service;
 
 import org.example.exp.BusinessException;
-import org.example.form.LoginForm;
-import org.example.form.UpdateAvatarForm;
-import org.example.form.UpdatePwdFrom;
-import org.example.form.UpdateUserForm;
-import org.example.pojo.User;
+import org.example.pojo.form.LoginForm;
+import org.example.pojo.form.UpdateAvatarForm;
+import org.example.pojo.form.UpdatePwdFrom;
+import org.example.pojo.form.UpdateUserForm;
+import org.example.pojo.entity.User;
 
 public interface UserService {
 

@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.example.form.UpdateCategoryForm;
-import org.example.pojo.Category;
+import org.example.pojo.form.UpdateCategoryForm;
+import org.example.pojo.entity.Category;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.example.form;
+package org.example.pojo.form;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

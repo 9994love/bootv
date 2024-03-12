@@ -1,4 +1,4 @@
-package org.example.pojo;
+package org.example.pojo.entity;
 
 
 //统一响应结果

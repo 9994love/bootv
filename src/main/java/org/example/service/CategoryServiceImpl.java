@@ -1,9 +1,9 @@
 package org.example.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.form.UpdateCategoryForm;
+import org.example.pojo.form.UpdateCategoryForm;
 import org.example.mapper.CategoryMapper;
-import org.example.pojo.Category;
+import org.example.pojo.entity.Category;
 import org.example.util.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
